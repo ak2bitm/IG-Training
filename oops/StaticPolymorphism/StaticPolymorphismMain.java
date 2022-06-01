@@ -9,5 +9,6 @@ public class StaticPolymorphismMain {
 		sp.sum(2, 3, 4);
 		//sp.sum(2, 11.5);
 		StaticPolymorphism.sum(5, 10.2);
+		StaticPolymorphism.sum(5, 20.0, 10);
 	}
 }

@@ -15,4 +15,7 @@ public class StaticPolymorphism {
 	static void sum(int a, double b) {
 		System.out.println("Addition of int and double is :"+(a+b));
 	}
+	static void sum(int a, double b, int c) {
+		System.out.println("Addition of int, double and int is :"+(a+b+c));
+	}
 }
