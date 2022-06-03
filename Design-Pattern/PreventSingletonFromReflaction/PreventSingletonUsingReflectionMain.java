@@ -3,7 +3,7 @@ package com.designPattern.PreventSingletonFromReflaction;
 import java.lang.reflect.Constructor;
 
 
-public class SingletonBreakUsingReflectionMain {
+public class PreventSingletonUsingReflectionMain {
 
 	public static void main(String[] args) {
 		Singleton instanceOne = Singleton.INSTANCE;
