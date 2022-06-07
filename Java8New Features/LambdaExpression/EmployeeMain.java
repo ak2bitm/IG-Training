@@ -18,7 +18,7 @@ public class EmployeeMain {
 		for(Employee e: empList) {
 			System.out.println(e.getEmpId()+" : "+e.getEmpName());
 		}
-		System.out.println("Sort Emp List using Lambda");
+		System.out.println("Sort Employee List using Lambda");
 		Collections.sort(empList, (e1,e2)->{
 			return e1.getEmpName().compareTo(e2.getEmpName());
 		});
