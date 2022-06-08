@@ -69,7 +69,8 @@ public class IntStreamMainTest01 {
 		Set<Integer> set=list.stream().collect(Collectors.toSet());
 		System.out.println(set);
 		System.out.println("-----------------------");
-		Map<String, Integer> map=list.stream().collect(Collectors.toMap(n->n.toString().concat("a"), n->n));
+		Map<String, Integer> map=list.stream()
+				.collect(Collectors.toMap(n->n.toString().concat("a"), n->n));
 		System.out.println(map);
 		System.out.println("---------Q19--list of sum using reduce()-------");
 		int reSum=list.stream().reduce(0, Integer::sum);
@@ -79,6 +80,13 @@ public class IntStreamMainTest01 {
 		System.out.println("Max is :"+reMax);
 		System.out.println("--------------Q21--sorting list in decending order---------");
 		list.stream().sorted(Collections.reverseOrder()).forEach(System.out::println);
+		System.out.println("--------distinct and sorting list---------");
+		List<Integer> list2 = Arrays.asList(1,2,5,8,1,9,7,2,4,6);
+		list2.stream().distinct().sorted()
+				.forEach(System.out::println);
+		System.out.println("----Create a List of the square of all distinct numbers----");
+		list2.stream().distinct().sorted().map(n-> n * 2)
+				.forEach(System.out::println);
 		System.out.println("----------End--------------");
 		
 	}

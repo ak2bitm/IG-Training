@@ -27,5 +27,8 @@ public class IntStreamMainTest03 {
 		System.out.println("-------Using reduce get last element---------");
 		int num = Arrays.stream(numbers).reduce((f,s)->s).orElse(15);
 		System.out.println("Last element is :"+num);
+		
+		System.out.println("----------------------------");
+		
 	}
 }

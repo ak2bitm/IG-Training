@@ -12,7 +12,8 @@ public class ConvertingMapToSet {
 		hashMap.put(1, "bb");
 		hashMap.put(2, "cc");
 		hashMap.put(3, "aa");
-		hashMap.put(4, "dd");
+		hashMap.put(4, "aa");
+		hashMap.put(5, "dd");
 		return hashMap;
 	}
 	public static void main(String[] args) {
