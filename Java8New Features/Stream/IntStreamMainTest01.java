@@ -38,17 +38,19 @@ public class IntStreamMainTest01 {
 		System.out.println(sum);
 		System.out.println("---------Q9--Sorting the list by default natural sorting---------");
 		list.stream().map(n->n).sorted().forEach(System.out::println);
-		System.out.println("---------Q10--Sort the list by Compartor--------");
-		list.stream().map(n->n)
+		System.out.println("---------Q10--Sort the list by natural order--------");
+		list.stream()
 			.sorted(Comparator.naturalOrder()).forEach(System.out::println);
+		System.out.println("---------Q10A--Sort the list by reverse order--------");
+		list.stream().sorted(Comparator.reverseOrder()).forEach(System.out::println);
 		System.out.println("---------Q11--printing the list with limit--------");
-		list.stream().map(n->n)
+		list.stream()
 			.limit(5).forEach(System.out::println);
 		System.out.println("---------Q12--skiping and limiting the list--------");
-		list.stream().map(n->n)
+		list.stream()
 			.skip(2).limit(4).forEach(System.out::println);
-		System.out.println("----------Q13--peek method useful in logging -------");
-		list.stream().map(n->n)
+		System.out.println("----------Q13--peek method useful to see intermedite result -------");
+		list.stream()
 			.peek(System.out::println)
 			.skip(2)
 			.peek(System.out::println)
