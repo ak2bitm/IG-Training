@@ -90,7 +90,7 @@ public class EmployeeMain {
 		
 		//10 How many male and female employees are there in the sales and marketing team?
 		Map<String, Long> numberOfEmpInSalesAndMarketingDept = 
-		listOfEmployee.stream().filter(e-> e.getDepartment()=="Sales" && e.getDepartment()=="Marketing")
+		listOfEmployee.stream().filter(e-> e.getDepartment()=="Sales" || e.getDepartment()=="Marketing")
 		.collect(Collectors.groupingBy(Employee::getGender, Collectors.counting()));
 		System.out.println(numberOfEmpInSalesAndMarketingDept);
 		
