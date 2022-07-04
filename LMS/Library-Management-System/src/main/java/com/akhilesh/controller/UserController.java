@@ -1,0 +1,23 @@
+package com.akhilesh.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.akhilesh.entity.User;
+import com.akhilesh.service.UserService;
+
+@RestController
+@RequestMapping("/api/library")
+public class UserController {
+
+	@Autowired
+	private UserService userService;
+	
+	@PostMapping("/users")
+	public User saveUser(@RequestBody User user) {
+		return userService.createUser(user);
+	}
+}
