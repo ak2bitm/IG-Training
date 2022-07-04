@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.akhilesh.entity.BookIssue;
@@ -30,11 +29,6 @@ public class BookIssueController {
 	@GetMapping("/bookissue")
 	public List<BookIssue> findAllBookIssue(){
 		return bookIssueService.findAllBookIssue();
-	}
-	
-	@GetMapping("/bookissue?status=Request")
-	public List<BookIssue> findBookIssueByStatus(@RequestParam String status) {
-		return bookIssueService.findBookbyStatus(status);
 	}
 	
 	

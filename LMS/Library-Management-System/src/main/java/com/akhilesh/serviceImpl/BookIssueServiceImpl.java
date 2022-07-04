@@ -41,9 +41,5 @@ public class BookIssueServiceImpl implements BookIssueService{
 		return bookIssueRepository.findAll();
 	}
 
-	@Override
-	public List<BookIssue> findBookbyStatus(String status) {
-		return bookIssueRepository.findByStatus(status);
-	}
 
 }
