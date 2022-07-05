@@ -11,5 +11,6 @@ public interface BookIssueService {
 
 	public BookIssue createBookIssue(long bookId, long userId, long libId, BookIssue bookIssue);
 	public List<BookIssue> findAllBookIssue();
+	public List<BookIssue> getAllBookIssueByStatus(String status);
 
 }

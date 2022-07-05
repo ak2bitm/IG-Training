@@ -1,5 +1,6 @@
 package com.akhilesh.config;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
@@ -33,14 +34,14 @@ public class BookBatchOperationConfiguration {
 	@Bean
 	Job job(JobBuilderFactory jobBuilderFactory, StepBuilderFactory stepBuilderFactory,
 			ItemReader<Book> itemReader, ItemProcessor<Book, Book> itemProcessor, ItemWriter<Book> itemWriter) {
-		log.info("job started");
+		log.info("BookBatchOperationConfiguration-job()-started");
 		Step step = stepBuilderFactory.get("ETL-File-Load")
 				.<Book,Book>chunk(100)
 				.reader(itemReader)
 				.processor(itemProcessor)
 				.writer(itemWriter)
 				.build();
-		log.info("job ended");
+		log.info("BookBatchOperationConfiguration-job()-ended");
 		return jobBuilderFactory.get("ETL-Load")
 				.incrementer(new RunIdIncrementer())
 				.start(step)
@@ -50,6 +51,7 @@ public class BookBatchOperationConfiguration {
 	
 	@Bean
 	FlatFileItemReader<Book> itemReader(@Value("${input}") Resource resource){
+		log.info("BookBatchOperationConfiguration-itemReader()");
 		FlatFileItemReader<Book> flatFileItemReader = new FlatFileItemReader<>();
 		flatFileItemReader.setResource(resource);
 		flatFileItemReader.setName("CSV-Reader");
@@ -60,11 +62,12 @@ public class BookBatchOperationConfiguration {
 
 	@Bean
 	LineMapper<Book> lineMapper() {
+		log.info("BookBatchOperationConfiguration-lineMapper()");
 		DefaultLineMapper<Book> defaultLineMapper = new DefaultLineMapper<>();
 		DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
 		lineTokenizer.setDelimiter(",");
 		lineTokenizer.setStrict(false);
-		lineTokenizer.setNames(new String[] {"bookName","bookAuthor","publication","bookPages","bookPrice","noOfCopies"});
+		lineTokenizer.setNames(new String[] {"bookName","author","noOfCopies","pages","price","publication"});
 		
 		BeanWrapperFieldSetMapper<Book> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
 		fieldSetMapper.setTargetType(Book.class);

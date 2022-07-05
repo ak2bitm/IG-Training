@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/load")
+@RequestMapping("/api/library/loadbooks")
 public class BulkBookController {
 	
 	private static final Logger log = LoggerFactory.getLogger(BulkBookController.class);
@@ -40,7 +40,7 @@ public class BulkBookController {
 		JobParameters parameters = new JobParameters(maps);
 		JobExecution jobExecution=jobLauncher.run(job, parameters);
 		log.info("JobExecution :"+jobExecution.getStatus());
-		log.info("Batch is Running");
+		log.info("Batch is Running.............");
 		while(jobExecution.isRunning()) {
 			log.info("...");
 		}

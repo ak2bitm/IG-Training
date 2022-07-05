@@ -1,0 +1,7 @@
+author,book_name,no_of_copies,pages,price,publication
+Rod Johnson,Spring,100,200,400,DEF Publication
+Rod Johnson,Spring Boot,100,200,400,DEF Publication
+Gavin King,Hibernate,100,200,400,ABC Publication
+Gavin King,Hibernate Advanced,100,200,400,ABC Publication
+James Gosling,Core Java,100,200,400,Sri Publication
+James Gosling,Advanced Java,100,200,400,Sri Publication
