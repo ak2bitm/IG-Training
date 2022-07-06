@@ -1,7 +1,6 @@
 package com.akhilesh.entity;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,10 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -46,11 +42,9 @@ public class BookIssue {
 	private User issuedBy;
 	
 	@JsonFormat(pattern = "yyyy-mm-dd")
-	//@Temporal(TemporalType.TIMESTAMP)
 	private Date bokkIssueDate;
 	
 	@JsonFormat(pattern = "yyyy-mm-dd")
-	//@Temporal(TemporalType.TIMESTAMP)
 	private Date bookReturnDate;
 	
 	@ManyToOne
@@ -58,7 +52,6 @@ public class BookIssue {
 	private User createdBy;
 	
 	@JsonFormat(pattern = "yyyy-mm-dd")
-	//@Temporal(TemporalType.TIMESTAMP)
 	private Date createdOn;
 	
 	@ManyToOne
@@ -66,7 +59,6 @@ public class BookIssue {
 	private User modifiedBy;
 	
 	@JsonFormat(pattern = "yyyy-mm-dd")
-	//@Temporal(TemporalType.TIMESTAMP)
 	private Date modifiedOn;
 	
 	private String status;

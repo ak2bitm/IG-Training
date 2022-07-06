@@ -21,7 +21,7 @@ public class Processor implements ItemProcessor<Book, Book>{
 	@Override
 	public Book process(Book books) throws Exception {
 		log.info("Book Process start");
-		books.setCreatedBy(user.builder().userId(8L).build());
+		books.setCreatedBy(user.builder().userId(1L).build());
 		books.setCreatedOn(new Date());
 		log.info("--------------------"+books);
 		log.info("Book Process stop");

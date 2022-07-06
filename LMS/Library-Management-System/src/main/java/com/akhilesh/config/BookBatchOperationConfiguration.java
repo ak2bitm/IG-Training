@@ -67,7 +67,7 @@ public class BookBatchOperationConfiguration {
 		DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
 		lineTokenizer.setDelimiter(",");
 		lineTokenizer.setStrict(false);
-		lineTokenizer.setNames(new String[] {"bookName","author","noOfCopies","pages","price","publication"});
+		lineTokenizer.setNames(new String[] {"author","bookName","noOfCopies","pages","price","publication"});
 		
 		BeanWrapperFieldSetMapper<Book> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
 		fieldSetMapper.setTargetType(Book.class);

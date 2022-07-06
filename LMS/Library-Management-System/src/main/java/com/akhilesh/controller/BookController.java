@@ -1,17 +1,19 @@
 package com.akhilesh.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.akhilesh.entity.Book;
 import com.akhilesh.service.BookService;
 
 @RestController
-@RequestMapping("/api/library")
 public class BookController {
 
 	@Autowired
@@ -20,5 +22,29 @@ public class BookController {
 	@PostMapping("/books/{libId}")
 	public Book saveBook(@PathVariable("libId")Long libId, @RequestBody Book book) {
 		return bookService.saveBook(libId,book);
+	}
+	
+	@GetMapping("books")
+	public List<Book> getAllBooks(){
+		return bookService.getAllBooks();
+	}
+	
+	@GetMapping("books/{bookId}")
+	public Book getBookByBookId(@PathVariable Long bookId) {
+		return bookService.getBookByBookId(bookId);
+	}
+	
+	@GetMapping("/books/search")
+	public List<Book> getBookbyBookName(@RequestParam String bookName){
+		return bookService.getBookbyBookName(bookName);
+	}
+	@GetMapping("/books/auth")
+	public List<Book> getBookByAuthor(@RequestParam String authName){
+		return bookService.getBookByAuthor(authName);
+	}
+	
+	@GetMapping("/books/get")
+	public List<Book> getBookByAuthorAndBookName(@RequestParam String authName, @RequestParam String bookName){
+		return bookService.getBookByAuthorAndBookName(authName, bookName);
 	}
 }
