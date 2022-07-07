@@ -1,2 +1,6 @@
 
-For Get All Users -> http://localhost:8081/api/library/users
+For GET All Users -> http://localhost:8081/api/library/users
+For GET User By Id -> http://localhost:8081/api/library/users/{userId}
+For POST User -> http://localhost:8081/api/library/users
+For PUT User -> http://localhost:8081/api/library/users/{userId}
+
