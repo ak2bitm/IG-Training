@@ -32,5 +32,6 @@ public class User {
 	private long mobileNo;
 	private String address;
 	private String userType;
+	private String status;
 		
 }

@@ -9,25 +9,24 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@Entity
-@Table
-public class BookIssue {
+
+public class BookIssueAuditTransaction {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long transactionId;
+	private long auditTransactionId;
+	
+	@ManyToOne
+	@JoinColumn(name = "transaction_id", referencedColumnName = "transactionId")
+	private BookIssue transactionId;
 
 	@ManyToOne
 	@JoinColumn(name = "book_id", referencedColumnName = "bookId")
@@ -41,24 +40,24 @@ public class BookIssue {
 	@JoinColumn(name = "issued_by", referencedColumnName = "userId")
 	private User issuedBy;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-mm-dd")
 	private Date bokkIssueDate;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-mm-dd")
 	private Date bookReturnDate;
 
 	@ManyToOne
 	@JoinColumn(name = "created_by", referencedColumnName = "userId")
 	private User createdBy;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-mm-dd")
 	private Date createdOn;
 
 	@ManyToOne
 	@JoinColumn(name = "modified_by", referencedColumnName = "userId")
 	private User modifiedBy;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-mm-dd")
 	private Date modifiedOn;
 
 	private String status;

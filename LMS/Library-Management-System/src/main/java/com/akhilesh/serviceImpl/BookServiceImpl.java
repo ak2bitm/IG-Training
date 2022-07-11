@@ -2,7 +2,6 @@ package com.akhilesh.serviceImpl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.akhilesh.entity.Book;
@@ -14,11 +13,16 @@ import com.akhilesh.service.BookService;
 @Service
 public class BookServiceImpl implements BookService{
 	
-	@Autowired
 	private BookRepository bookRepository;
 	
-	@Autowired
 	private UserRepository userRepository;
+
+	
+	public BookServiceImpl(BookRepository bookRepository, UserRepository userRepository) {
+		super();
+		this.bookRepository = bookRepository;
+		this.userRepository = userRepository;
+	}
 
 	@Override
 	public Book saveBook(Long libId,Book book) {
@@ -50,6 +54,21 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public List<Book> getBookByAuthorAndBookName(String authName, String bookName) {
 		return bookRepository.findByAuthorAndBookName(authName, bookName);
+	}
+
+	@Override
+	public Book saveBookInfo(Book book) {
+		return bookRepository.save(book);
+	}
+
+	@Override
+	public Book updateBook(Book book) {
+		return bookRepository.save(book);
+	}
+
+	@Override
+	public void deleteBook(Long bookId) {
+		bookRepository.deleteById(bookId);		
 	}
 
 }

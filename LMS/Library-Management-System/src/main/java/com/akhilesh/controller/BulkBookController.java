@@ -16,11 +16,13 @@ import org.springframework.batch.core.repository.JobExecutionAlreadyRunningExcep
 import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
 import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+//@RequestMapping("/api/library/loadbooks")
 @RequestMapping("/loadbooks")
 public class BulkBookController {
 	
@@ -33,6 +35,7 @@ public class BulkBookController {
 	Job job;
 	
 	@GetMapping
+	@Scheduled(cron = "0 * 04 * * ?")
 	public BatchStatus load() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException{
 		
 		Map<String, JobParameter> maps = new HashMap<>();

@@ -75,7 +75,7 @@ public class UserServiceTest {
 		User savedUser = userService.getUserById(user.getUserId()).get();
 		assertThat(savedUser).isNotNull();
 	}
-	
+
 	@DisplayName("Junit test for update user")
 	@Test
 	public void givenUserObject_whenUpdateUser_thenReturnUserObject() {
@@ -86,7 +86,7 @@ public class UserServiceTest {
 		assertThat(updateUser.getAddress()).isEqualTo("Pune");
 		assertThat(updateUser.getMobileNo()).isEqualTo(8888888881L);
 	}
-	
+
 	@DisplayName("Junit test for delete user")
 	@Test
 	public void givenUserObject_whenDeleteById_thenReturnNothing() {

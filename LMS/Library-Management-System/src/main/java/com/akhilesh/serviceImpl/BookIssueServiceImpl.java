@@ -1,6 +1,7 @@
 package com.akhilesh.serviceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,26 @@ public class BookIssueServiceImpl implements BookIssueService{
 	@Override
 	public List<BookIssue> getAllBookIssueByStatus(String status) {
 		return bookIssueRepository.getBookIssueByStatus(status);
+	}
+
+	@Override
+	public Optional<BookIssue> getBookIssueById(long transactionId) {
+		return bookIssueRepository.findById(transactionId);
+	}
+
+	@Override
+	public BookIssue saveBookIssue(BookIssue bookIssue) {
+		return bookIssueRepository.save(bookIssue);
+	}
+
+	@Override
+	public void deleteBookIssue(long transactionId) {
+		bookIssueRepository.deleteById(transactionId);		
+	}
+
+	@Override
+	public List<BookIssue> getAllBookIssue() {
+		return bookIssueRepository.findAll();
 	}
 
 
