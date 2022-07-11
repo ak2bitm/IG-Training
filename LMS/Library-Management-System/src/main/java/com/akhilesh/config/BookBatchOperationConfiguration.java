@@ -22,8 +22,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 
-
 import com.akhilesh.entity.Book;
+import com.google.common.base.Predicates;
+
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
 
 @Configuration
 @EnableBatchProcessing
@@ -75,5 +82,20 @@ public class BookBatchOperationConfiguration {
 		defaultLineMapper.setLineTokenizer(lineTokenizer);
 		defaultLineMapper.setFieldSetMapper(fieldSetMapper);
 		return defaultLineMapper;
+	}
+	
+	@Bean
+	public Docket api() {
+		return new Docket(DocumentationType.SWAGGER_2)
+				.select()
+				.paths(PathSelectors.any())
+				.apis(Predicates.not(RequestHandlerSelectors.basePackage("org.springbootframework.boot")))
+				.build().apiInfo(apiDetails());
+	}
+
+	
+	private ApiInfo apiDetails() {
+		Contact mycontact = new Contact("Akhilesh Kumar Patel", "www.google.com", "ak2bitm@gmail.com");
+		return new ApiInfo("LMS Api", "Book Search Api part of LMS", "1.1", "Free to use", mycontact, "Api under free liance", "www.google.com");
 	}
 }
