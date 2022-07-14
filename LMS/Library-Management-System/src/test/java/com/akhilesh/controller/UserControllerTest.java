@@ -69,7 +69,7 @@ public class UserControllerTest {
 
 	@DisplayName("Junit test for get all user rest api")
 	@Test
-	public void givenUserObjectList_whengetAllUser_thenReturnUserList() throws Exception {
+	public void givenUserObjectList_whenGetAllUser_thenReturnUserList() throws Exception {
 		List<User> userList = new ArrayList<>();
 		userList.add(User.builder().userName("Sanjay").age(35).email("sanjay@gmail.com").gender("Male")
 				.mobileNo(8888889999L).address("Varanasi").userType("STU").status("Active").build());
