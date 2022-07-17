@@ -5,12 +5,14 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -74,7 +76,7 @@ public class BookControllerTest {
 	@DisplayName("Junit test for get book by book id rest api")
 	@Test
 	public void givenBookObject_whenGetBookById_thenReturnBookObject() throws Exception {
-		BDDMockito.given(bookService.getBookByBookId(book.getBookId())).willReturn(book);
+		BDDMockito.given(bookService.getBookByBookId(book.getBookId())).willReturn(Optional.of(book));
 		ResultActions response = mockMvc.perform(get("/books/{bookId}", book.getBookId()));
 		response.andExpect(status().isOk()).andDo(print());
 	}
@@ -86,6 +88,22 @@ public class BookControllerTest {
 		BDDMockito.willDoNothing().given(bookService).deleteBook(bookId);
 		ResultActions response = mockMvc.perform(delete("/books/{bookId}", bookId));
 		response.andExpect(status().isOk()).andDo(print());
+	}
+	
+	@DisplayName("Junit test for update book rest api")
+	@Test
+	public void givenBookObject_whenUpdateBookById_thenReturnBook() throws Exception {
+		long bookId = 4L;
+		Book savedBook = Book.builder().bookName("DevOops").author("Gene Kim").noOfCopies(100).pages(800).price(650.00)
+				.publication("Sri").status("Available").build();
+		Book bookUpdate = Book.builder().status("Available").build();
+		
+		BDDMockito.given(bookService.getBookByBookId(book.getBookId())).willReturn(Optional.of(savedBook));
+		BDDMockito.given(bookService.updateBook(any(Book.class))).willAnswer(invocation-> invocation.getArgument(0));
+		
+		ResultActions response = mockMvc.perform(put("/books/{bookId}", bookId).contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(bookUpdate)));
+		response.andDo(print());
 	}
 
 }

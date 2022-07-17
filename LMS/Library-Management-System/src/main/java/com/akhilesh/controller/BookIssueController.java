@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -59,5 +61,15 @@ public class BookIssueController {
 	@GetMapping("/bookissue/{transactionId}")
 	public Optional<BookIssue> getBookIssueById(@PathVariable long transactionId){
 		return bookIssueService.getBookIssueById(transactionId);
+	}
+	
+	@PutMapping("/bookissue/{transactionId}")
+	public ResponseEntity<BookIssue> updateBookIssue(@PathVariable long transactionId, @RequestBody BookIssue bookIssue){
+		return bookIssueService.getBookIssueById(transactionId).map(book->{
+			book.setRemarks(bookIssue.getRemarks());
+			book.setStatus(bookIssue.getStatus());
+			BookIssue updateBookIssue = bookIssueService.updateBookIssue(book);
+			return new ResponseEntity<>(updateBookIssue, HttpStatus.OK);
+		}).orElseGet(()-> ResponseEntity.notFound().build());
 	}
 }

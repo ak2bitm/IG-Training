@@ -17,5 +17,6 @@ public interface BookIssueService {
 	public BookIssue saveBookIssue(BookIssue bookIssue);
 	public void deleteBookIssue(long transactionId);
 	public List<BookIssue>getAllBookIssue();
+	public BookIssue updateBookIssue(BookIssue bookIssue);
 
 }

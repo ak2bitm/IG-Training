@@ -73,7 +73,7 @@ public class BookServiceTest {
 		Book book = Book.builder().bookId(61L).bookName("DevOops").author("Gene Kim").noOfCopies(100).pages(800).price(650.00)
 				.publication("Sri").status("Available").build();
 		BDDMockito.given(bookRepository.findById(book.getBookId())).willReturn(Optional.of(book));
-		Book savedBook = bookService.getBookByBookId(book.getBookId());
+		Book savedBook = bookService.getBookByBookId(book.getBookId()).get();
 		assertThat(savedBook).isNotNull();
 	}
 	

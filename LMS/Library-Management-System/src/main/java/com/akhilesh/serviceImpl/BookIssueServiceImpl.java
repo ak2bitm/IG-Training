@@ -67,5 +67,10 @@ public class BookIssueServiceImpl implements BookIssueService{
 		return bookIssueRepository.findAll();
 	}
 
+	@Override
+	public BookIssue updateBookIssue(BookIssue bookIssue) {
+		return bookIssueRepository.save(bookIssue);
+	}
+
 
 }

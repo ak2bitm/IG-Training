@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -81,6 +82,19 @@ public class BookIssueControllerTest {
 		.andDo(print());
 	}
 	
+	@DisplayName("Junit test for update book issue transaction rest api")
+	@Test
+	public void givenBookIssueObject_whenUpdaeBookIssue_thenReturnBookIssueObject() throws JsonProcessingException, Exception {
+		long transactionId = 4L;
+		BookIssue savedBookIssue = BookIssue.builder().status("Pending").build();
+		BookIssue updateBookIssue = BookIssue.builder().bokkIssueDate(new Date()).status("Approved").remarks("Book Issued").build();
+		
+		BDDMockito.given(bookIssueService.getBookIssueById(savedBookIssue.getTransactionId())).willReturn(Optional.of(savedBookIssue));
+		BDDMockito.given(bookIssueService.updateBookIssue(any(BookIssue.class))).willAnswer(inv->inv.getArgument(0));
+		ResultActions response = mockMvc.perform(put("/bookissue/{transactionId}", transactionId).contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(updateBookIssue)));
+		response.andDo(print());
+	}
 	@DisplayName("Junit test for delete book issue rest api")
 	@Test
 	public void givenBookIssue_whenDeleteByBookIssueTransactionId_thenReturnNothing() throws Exception {

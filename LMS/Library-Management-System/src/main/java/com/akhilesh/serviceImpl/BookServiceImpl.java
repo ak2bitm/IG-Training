@@ -1,6 +1,7 @@
 package com.akhilesh.serviceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -11,13 +12,12 @@ import com.akhilesh.repo.UserRepository;
 import com.akhilesh.service.BookService;
 
 @Service
-public class BookServiceImpl implements BookService{
-	
+public class BookServiceImpl implements BookService {
+
 	private BookRepository bookRepository;
-	
+
 	private UserRepository userRepository;
 
-	
 	public BookServiceImpl(BookRepository bookRepository, UserRepository userRepository) {
 		super();
 		this.bookRepository = bookRepository;
@@ -25,7 +25,7 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public Book saveBook(Long libId,Book book) {
+	public Book saveBook(Long libId, Book book) {
 		User user = userRepository.findById(libId).get();
 		book.setCreatedBy(user);
 		return bookRepository.save(book);
@@ -37,8 +37,8 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public Book getBookByBookId(Long bookId) {
-		return bookRepository.findById(bookId).get();
+	public Optional<Book> getBookByBookId(Long bookId) {
+		return bookRepository.findById(bookId);
 	}
 
 	@Override
@@ -62,13 +62,12 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public Book updateBook(Book book) {
-		return bookRepository.save(book);
+	public void deleteBook(Long bookId) {
+		bookRepository.deleteById(bookId);
 	}
 
 	@Override
-	public void deleteBook(Long bookId) {
-		bookRepository.deleteById(bookId);		
+	public Book updateBook(Book book) {
+		return bookRepository.save(book);
 	}
-
 }
